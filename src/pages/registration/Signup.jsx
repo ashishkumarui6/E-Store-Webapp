@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 
 function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
   return (
     <div className=" flex justify-center items-center h-screen">
       <div className=" bg-gray-800 px-10 py-10 rounded-xl ">
@@ -18,7 +21,6 @@ function Signup() {
             placeholder="Name"
           />
         </div>
-
         <div>
           <input
             type="email"
