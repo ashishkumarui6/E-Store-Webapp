@@ -13,26 +13,26 @@ const Home = () => {
 
   const cartItem = useSelector((state) => state.cart);
 
-  console.log(cartItem);
-  const addCart = () => {
-    dispatch(addTocart("shirt"));
-  };
+  // console.log(cartItem);
+  // const addCart = () => {
+  //   dispatch(addTocart("shirt"));
+  // };
 
-  const deleteCart = () => {
-    dispatch(deleteFromCart("shirt"));
-  };
+  // const deleteCart = () => {
+  //   dispatch(deleteFromCart("shirt"));
+  // };
 
   return (
     <div>
       <Layout>
-        <div className="flex justify-center gap-5">
+        {/* <div className="flex justify-center gap-5">
           <button className="bg-gray-300 p-5" onClick={() => addCart()}>
             Add
           </button>
           <button className="bg-gray-300 p-5" onClick={() => deleteCart()}>
             Delete
           </button>
-        </div>
+        </div> */}
         <HeroSection />
         <Filter />
         <ProductCard />

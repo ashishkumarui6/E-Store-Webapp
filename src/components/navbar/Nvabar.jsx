@@ -11,8 +11,18 @@ const Nvabar = () => {
   const { mode, toggleMode } = context;
 
   const [open, setOpen] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // console.log(user.user.email);
+
+  const logout = () => {
+    localStorage.clear("user");
+    window.location.href = "/login";
+  };
   return (
     <>
+      {/* mobile nav */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
@@ -62,34 +72,47 @@ const Nvabar = () => {
                   >
                     All Products
                   </Link>
-                  <div className="flow-root">
-                    <Link
-                      to={"/order"}
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Order
-                    </Link>
-                  </div>
+                  {user ? (
+                    <div className="flow-root">
+                      <Link
+                        to={"/order"}
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                        className="-m-2 block p-2 font-medium text-gray-900"
+                      >
+                        Order
+                      </Link>
+                    </div>
+                  ) : (
+                    ""
+                  )}
 
-                  <div className="flow-root">
-                    <Link
-                      to={"/dashboard"}
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      admin
-                    </Link>
-                  </div>
+                  {user?.user?.email === "pcexpertatl@gmail.com" ? (
+                    <div className="flow-root">
+                      <Link
+                        to={"/dashboard"}
+                        className="-m-2 block p-2 font-medium text-gray-900"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        admin
+                      </Link>
+                    </div>
+                  ) : (
+                    ""
+                  )}
 
-                  <div className="flow-root">
-                    <a
-                      className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      Logout
-                    </a>
-                  </div>
+                  {user ? (
+                    <div className="flow-root">
+                      <a
+                        onClick={logout}
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Logout
+                      </a>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <div className="flow-root">
                     <Link
                       to={"/"}
@@ -125,6 +148,7 @@ const Nvabar = () => {
           </div>
         </Dialog>
       </Transition.Root>
+      {/* desktop nav */}
       <header className="relative bg-white">
         <p
           className="flex h-10 items-center justify-center bg-pink-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8"
@@ -195,27 +219,41 @@ const Nvabar = () => {
                   >
                     All Products
                   </Link>
-                  <Link
-                    to={"/order"}
-                    className="text-sm font-medium text-gray-700 "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Order
-                  </Link>
-                  <Link
-                    to={"/dashboard"}
-                    className="text-sm font-medium text-gray-700 "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Admin
-                  </Link>
+                  {user ? (
+                    <Link
+                      to={"/order"}
+                      className="text-sm font-medium text-gray-700 "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Order
+                    </Link>
+                  ) : (
+                    ""
+                  )}
 
-                  <a
-                    className="text-sm font-medium text-gray-700 cursor-pointer  "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Logout
-                  </a>
+                  {user?.user?.email === "pcexpertatl@gmail.com" ? (
+                    <Link
+                      to={"/dashboard"}
+                      className="text-sm font-medium text-gray-700 "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Admin
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+
+                  {user ? (
+                    <a
+                      onClick={logout}
+                      className="text-sm font-medium text-gray-700 cursor-pointer  "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Logout
+                    </a>
+                  ) : (
+                    ""
+                  )}
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
