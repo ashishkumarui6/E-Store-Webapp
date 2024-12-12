@@ -134,7 +134,7 @@ const Footer = () => {
                 className=" text-2xl font-bold text-black  px-2 py-1 rounded"
                 style={{ color: mode === "dark" ? "white" : "" }}
               >
-                E-Bharat
+                E-Store
               </h1>
             </div>
           </Link>

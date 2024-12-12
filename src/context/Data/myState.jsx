@@ -4,6 +4,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDocs,
   onSnapshot,
   orderBy,
   query,
@@ -42,6 +43,30 @@ const Mystate = ({ children }) => {
     }),
   });
 
+  const [product, setProduct] = useState([]);
+
+  const getProductData = async () => {
+    setLoading(true);
+    try {
+      await getDocs(collection(fireDB, "products")).then((querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setProduct(newData);
+        setLoading(false);
+      });
+
+      // return () => data;
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  // console.log(product);
+
   const addProducts = async () => {
     if (
       products.title == null ||
@@ -58,32 +83,11 @@ const Mystate = ({ children }) => {
 
       await addDoc(productRef, products);
       toast.success("Add product successfully");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 500);
       getProductData();
       setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  const [product, setProduct] = useState([]);
-
-  const getProductData = async () => {
-    setLoading(true);
-    try {
-      const q = query(collection(fireDB, products));
-      orderBy("time");
-
-      const data = onSnapshot(q, (QuerySnapshot) => {
-        let productArray = [];
-        QuerySnapshot.forEach((doc) => {
-          productArray.push({ ...doc.data(), id: doc.id });
-        });
-
-        setProduct(productArray);
-        setLoading(false);
-      });
-      return () => data;
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -93,6 +97,7 @@ const Mystate = ({ children }) => {
   useEffect(() => {
     getProductData();
   }, []);
+
   return (
     <MyContext.Provider
       value={{
