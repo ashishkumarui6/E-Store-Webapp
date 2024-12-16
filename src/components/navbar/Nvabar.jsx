@@ -5,6 +5,7 @@ import myContext from "../../context/Data/myContext";
 import { Link } from "react-router";
 import { Dialog, Transition } from "@headlessui/react";
 import { RxCross2 } from "react-icons/rx";
+import { useSelector } from "react-redux";
 
 const Nvabar = () => {
   const context = useContext(myContext);
@@ -20,6 +21,9 @@ const Nvabar = () => {
     localStorage.clear("user");
     window.location.href = "/login";
   };
+
+  const cartItems = useSelector((state) => state.cart);
+
   return (
     <>
       {/* mobile nav */}
@@ -321,7 +325,7 @@ const Nvabar = () => {
                       className="ml-2 text-sm font-medium text-gray-700 group-"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      0
+                      {cartItems.length}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>

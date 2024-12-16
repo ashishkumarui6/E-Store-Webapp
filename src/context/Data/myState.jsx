@@ -3,12 +3,14 @@ import MyContext from "./myContext";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   onSnapshot,
   orderBy,
   query,
   QuerySnapshot,
+  setDoc,
   Timestamp,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -98,6 +100,72 @@ const Mystate = ({ children }) => {
     getProductData();
   }, []);
 
+  // update product function
+
+  const edithandle = (item) => {
+    setProduct(item);
+  };
+
+  const updateProduct = async () => {
+    setLoading(true);
+    try {
+      await setDoc(doc(fireDB, "products", products.id), products);
+      toast.success("Products Update Successfully");
+      getProductData();
+      window.location.href = "/dashboard";
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  // delete product
+
+  const deleteProduct = async (item) => {
+    setLoading(true);
+    try {
+      await deleteDoc(doc(fireDB, "Products", item.id));
+      toast.success("Product Deleted successfully");
+      setLoading(false);
+      getProductData();
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const [order, setOrder] = useState([]);
+
+  const getOrderData = async () => {
+    setLoading(true);
+    try {
+      const result = await getDocs(collection(fireDB, "order"));
+      const ordersArray = [];
+      result.forEach((doc) => {
+        ordersArray.push(doc.data());
+        setLoading(false);
+      });
+      setOrder(ordersArray);
+      // console.log(ordersArray);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getProductData();
+    getOrderData();
+  }, []);
+
+  /// filter logic
+
+  const [searchkey, setSearchkey] = useState("");
+  const [filterType, setFilterType] = useState("");
+  const [filterPrice, setFilterPrice] = useState("");
+
   return (
     <MyContext.Provider
       value={{
@@ -109,6 +177,16 @@ const Mystate = ({ children }) => {
         setProducts,
         addProducts,
         product,
+        deleteProduct,
+        updateProduct,
+        edithandle,
+        order,
+        searchkey,
+        setSearchkey,
+        filterType,
+        setFilterType,
+        filterPrice,
+        setFilterPrice,
       }}
     >
       {children}

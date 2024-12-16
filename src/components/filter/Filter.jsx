@@ -3,7 +3,16 @@ import myContext from "../../context/Data/myContext";
 
 function Filter() {
   const context = useContext(myContext);
-  const { mode } = context;
+  const {
+    mode,
+    searchkey,
+    setSearchkey,
+    filterType,
+    setFilterType,
+    filterPrice,
+    setFilterPrice,
+    products,
+  } = context;
 
   return (
     <div>
@@ -27,6 +36,8 @@ function Filter() {
               </svg>
             </div>
             <input
+              value={searchkey}
+              onChange={(e) => setSearchkey(e.target.value)}
               type="text"
               name="searchkey"
               id="searchkey"
@@ -57,8 +68,7 @@ function Filter() {
                 }}
               >
                 <option value="jacket">Jacket</option>
-                <option value="shirt">shirt</option>
-                <option value="mobile">mobile</option>
+                <option value="jacket">Jacket</option>
                 <option value="jacket">Jacket</option>
               </select>
               <select

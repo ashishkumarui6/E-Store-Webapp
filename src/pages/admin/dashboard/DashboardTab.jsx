@@ -9,13 +9,16 @@ import { Link } from "react-router";
 function DashboardTab() {
   const context = useContext(myContext);
 
-  const { mode, product } = context;
+  const { mode, product, deleteProduct, edithandle, order } = context;
 
-  console.log(product, "13");
+  console.log(order, "14");
+
+  // console.log(product, "13");
 
   const add = () => {
     window.location.href = "/addproduct";
   };
+
   return (
     <>
       <div className="container mx-auto">
@@ -111,14 +114,7 @@ function DashboardTab() {
                       </tr>
                     </thead>
                     {product.map((item, index) => {
-                      const {
-                        title,
-                        price,
-                        imageUrl,
-                        category,
-                        description,
-                        date,
-                      } = item;
+                      const { title, price, imageUrl, category, date } = item;
                       return (
                         <tbody className="">
                           <tr className="bg-gray-50 border-b  dark:border-gray-700">
@@ -209,50 +205,57 @@ function DashboardTab() {
                 <h1 className=" text-center mb-5 text-3xl font-semibold underline">
                   Order Details
                 </h1>
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-black uppercase bg-gray-200 ">
-                    <tr>
-                      <th scope="col" className="px-6 py-3">
-                        Payment Id
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Image
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Title
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Price
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Category
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Name
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Address
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Pincode
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Phone Number
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Email
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
+                {order.map((allorder) => {
+                  return (
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead className="text-xs text-black uppercase bg-gray-200 ">
+                        <tr>
+                          <th scope="col" className="px-6 py-3">
+                            Payment Id
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Image
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Title
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Price
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Category
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Name
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Address
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Pincode
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Phone Number
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Email
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Date
+                          </th>
+                        </tr>
+                      </thead>
+                      {allorder.cartItems.map((item, index) => {
+                        return console.log(allorder, "247");
+                      })}
+                      <tbody>
+                        <tr>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  );
+                })}
               </div>
             </TabPanel>
             <TabPanel>
