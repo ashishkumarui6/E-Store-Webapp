@@ -6,6 +6,7 @@ import { Link } from "react-router";
 import { Dialog, Transition } from "@headlessui/react";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
+import profile from "../../assets/men.jpg";
 
 const Nvabar = () => {
   const context = useContext(myContext);
@@ -124,9 +125,9 @@ const Nvabar = () => {
                     >
                       <img
                         className="inline-block w-10 h-10 rounded-full"
-                        src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
+                        src={profile}
                         alt="Dan_Abromov"
-                      />{" "}
+                      />
                     </Link>
                   </div>
                 </div>
@@ -279,7 +280,7 @@ const Nvabar = () => {
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
-                      src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
+                      src={profile}
                       alt="Dan_Abromov"
                     />
                   </a>

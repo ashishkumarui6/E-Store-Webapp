@@ -5,6 +5,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   onSnapshot,
   orderBy,
@@ -124,15 +125,17 @@ const Mystate = ({ children }) => {
 
   const deleteProduct = async (item) => {
     setLoading(true);
-    try {
-      await deleteDoc(doc(fireDB, "Products", item.id));
-      toast.success("Product Deleted successfully");
-      setLoading(false);
-      getProductData();
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
+
+    const docRef = doc(fireDB, "products", item.id);
+    deleteDoc(docRef)
+      .then(() => {
+        toast.success("Product Deleted successfully");
+        getProductData();
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   };
 
   const [order, setOrder] = useState([]);
@@ -159,6 +162,33 @@ const Mystate = ({ children }) => {
     getProductData();
     getOrderData();
   }, []);
+
+  const [user, setUser] = useState([]);
+
+  const getUserData = async () => {
+    setLoading(true);
+    try {
+      const result = await getDocs(collection(fireDB, "users"));
+      const usersArray = [];
+      result.forEach((doc) => {
+        usersArray.push(doc.data());
+        setLoading(false);
+      });
+      setUser(usersArray);
+      console.log(usersArray);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getProductData();
+    getOrderData();
+    getUserData();
+  }, []);
+  // console.log(user, "190");
 
   /// filter logic
 
@@ -187,6 +217,7 @@ const Mystate = ({ children }) => {
         setFilterType,
         filterPrice,
         setFilterPrice,
+        user,
       }}
     >
       {children}

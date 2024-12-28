@@ -7,12 +7,14 @@ function Filter() {
     mode,
     searchkey,
     setSearchkey,
-    filterType,
     setFilterType,
-    filterPrice,
     setFilterPrice,
-    products,
+    filterType,
+    filterPrice,
+    product,
   } = context;
+
+  // console.log(product, "17");
 
   return (
     <div>
@@ -66,10 +68,21 @@ function Filter() {
                   backgroundColor: mode === "dark" ? "rgb(64 66 70)" : "",
                   color: mode === "dark" ? "white" : "",
                 }}
+                value={filterType}
+                onChange={(e) => setFilterType(e.target.value)}
               >
-                <option value="jacket">Jacket</option>
-                <option value="jacket">Jacket</option>
-                <option value="jacket">Jacket</option>
+                {product
+                  .filter((obj) => obj.title.toLowerCase().includes(searchkey))
+                  // .filter((obj) =>
+                  //   obj.category.toLowerCase().includes(filterType)
+                  // )
+                  // .filter((obj) => obj.price.includes(filterPrice))
+                  // .slice(0, 8)
+                  .map((item, index) => {
+                    return (
+                      <option value={item.category}>{item.category}</option>
+                    );
+                  })}
               </select>
               <select
                 className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0  focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
@@ -77,11 +90,12 @@ function Filter() {
                   backgroundColor: mode === "dark" ? "rgb(64 66 70)" : "",
                   color: mode === "dark" ? "white" : "",
                 }}
+                value={filterPrice}
+                onChange={(e) => setFilterPrice(e.target.value)}
               >
-                <option value="100">100</option>
-                <option value="200">200</option>
-                <option value="300">300</option>
-                <option value="400">400</option>
+                {product.map((item) => {
+                  return <option value={item.price}>{item.price}</option>;
+                })}
               </select>
             </div>
           </div>
