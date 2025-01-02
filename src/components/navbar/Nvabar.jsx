@@ -8,7 +8,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import profile from "../../assets/men.jpg";
 
-const Nvabar = () => {
+const Navbar = () => {
   const context = useContext(myContext);
   const { mode, toggleMode } = context;
 
@@ -340,4 +340,4 @@ const Nvabar = () => {
   );
 };
 
-export default Nvabar;
+export default Navbar;
