@@ -11,7 +11,6 @@ import Dashboard from "./pages/admin/dashboard/Dashboard";
 import AddProduct from "./pages/admin/pages/UpdateProduct";
 import UpdateProduct from "./pages/admin/pages/AddProduct";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/home/Home";
 import AllProducts from "./pages/allProducts/AllProducts";
 
