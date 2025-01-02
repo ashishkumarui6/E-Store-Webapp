@@ -8,6 +8,9 @@ function Filter() {
     searchkey,
     setSearchkey,
     setFilterType,
+    searchByPrice,
+    searchByType,
+    searchData,
     setFilterPrice,
     filterType,
     filterPrice,
@@ -39,7 +42,7 @@ function Filter() {
             </div>
             <input
               value={searchkey}
-              onChange={(e) => setSearchkey(e.target.value)}
+              onChange={searchData}
               type="text"
               name="searchkey"
               id="searchkey"
@@ -69,20 +72,11 @@ function Filter() {
                   color: mode === "dark" ? "white" : "",
                 }}
                 value={filterType}
-                onChange={(e) => setFilterType(e.target.value)}
+                onChange={searchByType}
               >
-                {product
-                  .filter((obj) => obj.title.toLowerCase().includes(searchkey))
-                  // .filter((obj) =>
-                  //   obj.category.toLowerCase().includes(filterType)
-                  // )
-                  // .filter((obj) => obj.price.includes(filterPrice))
-                  // .slice(0, 8)
-                  .map((item, index) => {
-                    return (
-                      <option value={item.category}>{item.category}</option>
-                    );
-                  })}
+                {product.map((item, index) => {
+                  return <option value={item.category}>{item.category}</option>;
+                })}
               </select>
               <select
                 className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0  focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
@@ -91,7 +85,7 @@ function Filter() {
                   color: mode === "dark" ? "white" : "",
                 }}
                 value={filterPrice}
-                onChange={(e) => setFilterPrice(e.target.value)}
+                onChange={searchByPrice}
               >
                 {product.map((item) => {
                   return <option value={item.price}>{item.price}</option>;

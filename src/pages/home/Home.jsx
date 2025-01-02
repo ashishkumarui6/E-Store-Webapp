@@ -5,14 +5,8 @@ import Filter from "../../components/filter/Filter";
 import Track from "../../components/track/Track";
 import Testimonial from "../../components/testimonial/Testimonial";
 import ProductCard from "../../components/productCard/ProductCard";
-import { useDispatch, useSelector } from "react-redux";
-import { addTocart, deleteFromCart } from "../../redux/cartSlice";
 
 const Home = () => {
-  const dispatch = useDispatch();
-
-  const cartItem = useSelector((state) => state.cart);
-
   // console.log(cartItem);
   // const addCart = () => {
   //   dispatch(addTocart("shirt"));

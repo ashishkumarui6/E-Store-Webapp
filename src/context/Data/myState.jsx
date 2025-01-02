@@ -47,6 +47,7 @@ const Mystate = ({ children }) => {
   });
 
   const [product, setProduct] = useState([]);
+  const [filteredProduct, setFilteredProduct] = useState([]);
 
   const getProductData = async () => {
     setLoading(true);
@@ -58,6 +59,7 @@ const Mystate = ({ children }) => {
         }));
 
         setProduct(newData);
+        setFilteredProduct(newData);
         setLoading(false);
       });
 
@@ -196,13 +198,39 @@ const Mystate = ({ children }) => {
   const [filterType, setFilterType] = useState("");
   const [filterPrice, setFilterPrice] = useState("");
 
+  const searchData = (e) => {
+    setSearchkey(e.target.value);
+    const filteredData = product.filter((it) =>
+      it.title.includes(e.target.value)
+    );
+
+    setFilteredProduct(filteredData);
+  };
+
+  const searchByType = (e) => {
+    setFilterType(e.target.value);
+    const filteredData = product.filter((it) => it.title === e.target.value);
+
+    setFilteredProduct(filteredData);
+  };
+
+  const searchByPrice = (e) => {
+    setFilterPrice(e.target.value);
+    const filteredData = product.filter((it) => it.price === e.target.value);
+
+    setFilteredProduct(filteredData);
+  };
+
   return (
     <MyContext.Provider
       value={{
         mode,
+        searchByPrice,
         toggleMode,
         loading,
         setLoading,
+        searchByType,
+        searchData,
         products,
         setProducts,
         addProducts,
@@ -213,6 +241,7 @@ const Mystate = ({ children }) => {
         order,
         searchkey,
         setSearchkey,
+        filteredProduct,
         filterType,
         setFilterType,
         filterPrice,

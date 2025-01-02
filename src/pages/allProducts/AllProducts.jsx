@@ -8,7 +8,7 @@ import { addTocart } from "../../redux/cartSlice";
 const AllProducts = () => {
   const context = useContext(myContext);
 
-  const { mode, product } = context;
+  const { mode, product, filteredProduct } = context;
 
   const dispatch = useDispatch();
 
@@ -22,6 +22,7 @@ const AllProducts = () => {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
+
   return (
     <>
       <Layout>
@@ -35,7 +36,7 @@ const AllProducts = () => {
               <div class="h-1 w-20 bg-pink-600 rounded"></div>
             </div>
             <div className="flex flex-wrap -m-4">
-              {product.map((item, index) => {
+              {filteredProduct?.map((item, index) => {
                 const { title, price, description, imageUrl, id } = item;
                 return (
                   <>

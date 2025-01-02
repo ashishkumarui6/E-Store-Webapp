@@ -36,7 +36,7 @@ function Cart() {
     setTotalAmount(temp);
   }, []);
 
-  const Shipping = parseInt(1);
+  const Shipping = parseInt(100);
 
   const grandToatal = Shipping + totalAmount;
 
