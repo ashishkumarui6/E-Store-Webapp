@@ -1,9 +1,9 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router";
 import Mystate from "./context/Data/myState";
-import Order from "./pages/Order/Order";
-import Cart from "./pages/Cart/Cart";
-import NoPage from "./pages/NoPage/NoPage";
+import Order from "./pages/order/Order";
+import Cart from "./pages/cart/Cart";
+import NoPage from "./pages/nopage/NoPage";
 import Login from "./pages/registration/Login";
 import Signup from "./pages/registration/Signup";
 import ProductInfo from "./pages/productInfo/ProductInfo";
