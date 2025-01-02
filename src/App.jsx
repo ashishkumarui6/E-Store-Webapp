@@ -1,9 +1,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router";
 import Mystate from "./context/Data/myState";
-import Home from "./pages/Home/Home";
 import Order from "./pages/Order/Order";
-import AllProducts from "./pages/AllProducts/AllProducts";
 import Cart from "./pages/Cart/Cart";
 import NoPage from "./pages/NoPage/NoPage";
 import Login from "./pages/registration/Login";
@@ -14,6 +12,8 @@ import AddProduct from "./pages/admin/pages/AddProduct";
 import UpdateProduct from "./pages/admin/pages/UpdateProduct";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Home from "./pages/home/Home";
+import AllProducts from "./pages/allProducts/AllProducts";
 
 const App = () => {
   return (

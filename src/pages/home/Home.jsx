@@ -7,26 +7,9 @@ import Testimonial from "../../components/testimonial/Testimonial";
 import ProductCard from "../../components/productCard/ProductCard";
 
 const Home = () => {
-  // console.log(cartItem);
-  // const addCart = () => {
-  //   dispatch(addTocart("shirt"));
-  // };
-
-  // const deleteCart = () => {
-  //   dispatch(deleteFromCart("shirt"));
-  // };
-
   return (
     <div>
       <Layout>
-        {/* <div className="flex justify-center gap-5">
-          <button className="bg-gray-300 p-5" onClick={() => addCart()}>
-            Add
-          </button>
-          <button className="bg-gray-300 p-5" onClick={() => deleteCart()}>
-            Delete
-          </button>
-        </div> */}
         <HeroSection />
         <Filter />
         <ProductCard />
